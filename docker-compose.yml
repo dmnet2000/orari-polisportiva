@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: orari-polisportiva-db
+    environment:
+      POSTGRES_DB: orari_polisportiva
+      POSTGRES_USER: polisportiva
+      POSTGRES_PASSWORD: polisportiva_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/src/main/resources/db/migration:/docker-entrypoint-initdb.d
+    networks:
+      - orari-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U polisportiva"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: orari-polisportiva-backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/orari_polisportiva
+      SPRING_DATASOURCE_USERNAME: polisportiva
+      SPRING_DATASOURCE_PASSWORD: polisportiva_password
+      SPRING_JPA_HIBERNATE_DDL_AUTO: validate
+      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - orari-network
+    volumes:
+      - ./backend:/app
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: orari-polisportiva-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      VITE_API_URL: http://backend:8080
+    depends_on:
+      - backend
+    networks:
+      - orari-network
+    volumes:
+      - ./frontend:/app
+
+volumes:
+  postgres_data:
+
+networks:
+  orari-network:
+    driver: bridge
