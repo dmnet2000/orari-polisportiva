@@ -1,25 +1,25 @@
 # Orari Polisportiva
 
-An integrated platform for managing sports facility schedules, training groups, and bookings.
+Una piattaforma integrata per la gestione degli orari degli impianti sportivi, dei gruppi di allenamento e delle prenotazioni.
 
-## 🎯 Project Overview
+## 🎯 Panoramica del Progetto
 
-Orari Polisportiva is a full-stack web application that allows sports facility managers to efficiently organize schedules and enables users to book training sessions. The system includes:
+Orari Polisportiva è un'applicazione web full-stack che permette ai gestori degli impianti sportivi di organizzare in modo efficiente gli orari e agli utenti di prenotare le sessioni di allenamento. Il sistema include:
 
-- **Facilities Management**: Register and manage sports facilities with multiple fields
-- **Sports Disciplines**: Organize sports types and training groups
-- **Schedule Management**: Create and manage training schedules
-- **Booking System**: Allow users to reserve spots in training sessions
-- **User Authentication**: Secure JWT-based authentication
-- **Admin Dashboard**: Comprehensive management tools for administrators
+- **Gestione Impianti**: registrazione e gestione di impianti sportivi con più campi
+- **Discipline Sportive**: organizzazione dei tipi di sport e dei gruppi di allenamento
+- **Gestione Orari**: creazione e gestione degli orari di allenamento
+- **Sistema di Prenotazione**: possibilità per gli utenti di riservare posti nelle sessioni di allenamento
+- **Autenticazione Utenti**: autenticazione sicura basata su JWT
+- **Dashboard Admin**: strumenti completi di gestione per gli amministratori
 
-## 🏗️ Architecture
+## 🏗️ Architettura
 
 ### Backend
 - **Framework**: Spring Boot 3.x
 - **Database**: PostgreSQL 14+
-- **Security**: Spring Security with JWT
-- **API**: RESTful with OpenAPI/Swagger documentation
+- **Sicurezza**: Spring Security con JWT
+- **API**: RESTful con documentazione OpenAPI/Swagger
 - **ORM**: JPA/Hibernate
 
 ### Frontend
@@ -30,39 +30,39 @@ Orari Polisportiva is a full-stack web application that allows sports facility m
 - **Router**: Vue Router 4
 
 ### Deployment
-- **Containerization**: Docker & Docker Compose
+- **Containerizzazione**: Docker & Docker Compose
 - **Database**: PostgreSQL in Docker
 
-## 📦 Installation
+## 📦 Installazione
 
-### Prerequisites
-- Docker & Docker Compose
-- OR
+### Prerequisiti
+- Docker & Docker Compose  
+- OPPURE  
 - Java 17+, Node.js 18+, PostgreSQL 14+
 
-### Quick Start with Docker
+### Avvio rapido con Docker
 
 ```bash
-# Clone the repository
+# Clona il repository
 git clone https://github.com/dmnet2000/orari-polisportiva.git
 cd orari-polisportiva
 
-# Start all services
+# Avvia tutti i servizi
 docker-compose up -d
 
-# Access the application
+# Accesso all'applicazione
 # Frontend: http://localhost:3000
 # Backend API: http://localhost:8080/api
 # Swagger UI: http://localhost:8080/api/swagger-ui.html
 # Database: localhost:5432
 ```
 
-### Manual Setup
+### Setup manuale
 
-#### Database Setup
+#### Configurazione Database
 
 ```bash
-# Create PostgreSQL database
+# Crea database PostgreSQL
 psql -U postgres
 
 CREATE DATABASE orari_polisportiva;
@@ -73,7 +73,7 @@ ALTER ROLE polisportiva SET default_transaction_deferrable TO on;
 GRANT ALL PRIVILEGES ON DATABASE orari_polisportiva TO polisportiva;
 ```
 
-#### Backend Setup
+#### Setup Backend
 
 ```bash
 cd backend
@@ -81,121 +81,121 @@ cd backend
 # Build
 mvn clean install
 
-# Run
+# Avvio
 mvn spring-boot:run
 
-# API will be available at http://localhost:8080/api
+# Le API saranno disponibili su http://localhost:8080/api
 ```
 
-#### Frontend Setup
+#### Setup Frontend
 
 ```bash
 cd frontend
 
-# Install dependencies
+# Installa dipendenze
 npm install
 
-# Development
+# Sviluppo
 npm run dev
 
-# Build for production
+# Build per produzione
 npm run build
 ```
 
-## 🔐 Default Credentials
+## 🔐 Credenziali predefinite
 
-### Admin User (Create after first run)
+### Utente Admin (da creare al primo avvio)
 
-You can create an admin user through the registration endpoint or modify the role directly in the database.
+Puoi creare un utente admin tramite l'endpoint di registrazione oppure modificare direttamente il ruolo nel database.
 
-## 📚 API Documentation
+## 📚 Documentazione API
 
-### Authentication Endpoints
-
-```
-POST /auth/register    - Register new user
-POST /auth/login       - Login and get JWT token
-```
-
-### Palestre (Facilities)
+### Endpoint di Autenticazione
 
 ```
-GET    /palestre              - Get all facilities
-GET    /palestre/attive       - Get active facilities
-GET    /palestre/{id}         - Get facility by ID
-POST   /palestre              - Create facility (Admin)
-PUT    /palestre/{id}         - Update facility (Admin)
-DELETE /palestre/{id}         - Delete facility (Admin)
+POST /auth/register    - Registra un nuovo utente
+POST /auth/login       - Login e ottenimento token JWT
 ```
 
-### Discipline (Sports)
+### Palestre (Impianti)
 
 ```
-GET    /discipline            - Get all disciplines
-GET    /discipline/attive     - Get active disciplines
-GET    /discipline/{id}       - Get discipline by ID
-POST   /discipline            - Create discipline (Admin)
-PUT    /discipline/{id}       - Update discipline (Admin)
-DELETE /discipline/{id}       - Delete discipline (Admin)
+GET    /palestre              - Ottiene tutti gli impianti
+GET    /palestre/attive       - Ottiene gli impianti attivi
+GET    /palestre/{id}         - Ottiene impianto per ID
+POST   /palestre              - Crea impianto (Admin)
+PUT    /palestre/{id}         - Aggiorna impianto (Admin)
+DELETE /palestre/{id}         - Elimina impianto (Admin)
 ```
 
-### Gruppi (Training Groups)
+### Discipline (Sport)
 
 ```
-GET    /gruppi                         - Get all groups
-GET    /gruppi/attivi                  - Get active groups
-GET    /gruppi/disciplina/{disciplinaId} - Get groups by discipline
-GET    /gruppi/{id}                    - Get group by ID
-POST   /gruppi                         - Create group (Admin)
-PUT    /gruppi/{id}                    - Update group (Admin)
-DELETE /gruppi/{id}                    - Delete group (Admin)
+GET    /discipline            - Ottiene tutte le discipline
+GET    /discipline/attive     - Ottiene le discipline attive
+GET    /discipline/{id}       - Ottiene disciplina per ID
+POST   /discipline            - Crea disciplina (Admin)
+PUT    /discipline/{id}       - Aggiorna disciplina (Admin)
+DELETE /discipline/{id}       - Elimina disciplina (Admin)
 ```
 
-### Orari (Schedules)
+### Gruppi (Gruppi di allenamento)
 
 ```
-GET    /orari                    - Get all schedules
-GET    /orari/attivi             - Get active schedules
-GET    /orari/palestra/{id}      - Get schedules by facility
-GET    /orari/gruppo/{id}        - Get schedules by group
-GET    /orari/giorno/{giorno}    - Get schedules by day
-GET    /orari/{id}               - Get schedule by ID
-POST   /orari                    - Create schedule (Admin)
-PUT    /orari/{id}               - Update schedule (Admin)
-DELETE /orari/{id}               - Delete schedule (Admin)
+GET    /gruppi                           - Ottiene tutti i gruppi
+GET    /gruppi/attivi                    - Ottiene i gruppi attivi
+GET    /gruppi/disciplina/{disciplinaId} - Ottiene gruppi per disciplina
+GET    /gruppi/{id}                      - Ottiene gruppo per ID
+POST   /gruppi                           - Crea gruppo (Admin)
+PUT    /gruppi/{id}                      - Aggiorna gruppo (Admin)
+DELETE /gruppi/{id}                      - Elimina gruppo (Admin)
+```
+
+### Orari (Orari di allenamento)
+
+```
+GET    /orari                    - Ottiene tutti gli orari
+GET    /orari/attivi             - Ottiene gli orari attivi
+GET    /orari/palestra/{id}      - Ottiene orari per impianto
+GET    /orari/gruppo/{id}        - Ottiene orari per gruppo
+GET    /orari/giorno/{giorno}    - Ottiene orari per giorno
+GET    /orari/{id}               - Ottiene orario per ID
+POST   /orari                    - Crea orario (Admin)
+PUT    /orari/{id}               - Aggiorna orario (Admin)
+DELETE /orari/{id}               - Elimina orario (Admin)
 ```
 
 ### Prenotazioni (Bookings)
 
 ```
-GET    /prenotazioni                - Get all bookings
-GET    /prenotazioni/orario/{id}    - Get bookings by schedule
-GET    /prenotazioni/utente/{id}    - Get bookings by user
-GET    /prenotazioni/{id}           - Get booking by ID
-POST   /prenotazioni                - Create booking
-PUT    /prenotazioni/{id}           - Update booking
-DELETE /prenotazioni/cancel/{id}    - Cancel booking
-DELETE /prenotazioni/{id}           - Delete booking (Admin)
+GET    /prenotazioni                - Ottiene tutte le prenotazioni
+GET    /prenotazioni/orario/{id}    - Ottiene prenotazioni per orario
+GET    /prenotazioni/utente/{id}    - Ottiene prenotazioni per utente
+GET    /prenotazioni/{id}           - Ottiene prenotazione per ID
+POST   /prenotazioni                - Crea prenotazione
+PUT    /prenotazioni/{id}           - Aggiorna prenotazione
+DELETE /prenotazioni/cancel/{id}    - Annulla prenotazione
+DELETE /prenotazioni/{id}           - Elimina prenotazione (Admin)
 ```
 
-## 🗄️ Database Schema
+## 🗄️ Schema Database
 
-### Main Tables
+### Tabelle principali
 
-- **users**: User accounts with roles
-- **palestre**: Sports facilities
-- **discipline**: Sports disciplines
-- **gruppi**: Training groups
-- **orari**: Training schedules
-- **prenotazioni**: User bookings
+- **users**: account utente con ruoli
+- **palestre**: impianti sportivi
+- **discipline**: discipline sportive
+- **gruppi**: gruppi di allenamento
+- **orari**: orari di allenamento
+- **prenotazioni**: prenotazioni utenti
 
-## 🛠️ Technologies
+## 🛠️ Tecnologie
 
 ### Backend
 - Spring Boot 3.x
 - Spring Security
 - Spring Data JPA
-- Flyway (Database migrations)
+- Flyway (migrazioni database)
 - Lombok
 - Swagger/OpenAPI
 - JWT (JSON Web Tokens)
@@ -214,7 +214,7 @@ DELETE /prenotazioni/{id}           - Delete booking (Admin)
 - Docker Compose
 - PostgreSQL
 
-## 📝 Environment Configuration
+## 📝 Configurazione ambiente
 
 ### Backend (application.yml)
 
@@ -238,95 +238,95 @@ app:
 VITE_API_URL=http://localhost:8080/api
 ```
 
-## 🚀 Deployment
+## 🚀 Deploy
 
-### Production Deployment
+### Deploy in produzione
 
-1. Update environment variables in `docker-compose.yml`
-2. Change JWT secret to a secure value
-3. Configure database credentials
-4. Run: `docker-compose -f docker-compose.yml up -d`
+1. Aggiorna le variabili d'ambiente in `docker-compose.yml`
+2. Cambia il secret JWT con un valore sicuro
+3. Configura le credenziali del database
+4. Esegui: `docker-compose -f docker-compose.yml up -d`
 
-### Database Backups
+### Backup Database
 
 ```bash
 # Backup
 docker exec orari-polisportiva-db pg_dump -U polisportiva orari_polisportiva > backup.sql
 
-# Restore
+# Ripristino
 docker exec -i orari-polisportiva-db psql -U polisportiva orari_polisportiva < backup.sql
 ```
 
-## 📝 Development
+## 📝 Sviluppo
 
-### Running Tests
+### Esecuzione test
 
 ```bash
-# Backend tests
+# Test backend
 cd backend
 mvn test
 
-# Frontend tests
+# Test frontend
 cd frontend
 npm run test:unit
 ```
 
-### Code Quality
+### Qualità del codice
 
 ```bash
-# Frontend linting
+# Linting frontend
 cd frontend
 npm run lint
 ```
 
-## 🐛 Troubleshooting
+## 🐛 Risoluzione problemi
 
-### Database Connection Issues
+### Problemi connessione Database
 
 ```bash
-# Check PostgreSQL status
+# Verifica stato PostgreSQL
 docker ps | grep postgres
 
-# View logs
+# Visualizza log
 docker logs orari-polisportiva-db
 ```
 
-### Backend Issues
+### Problemi Backend
 
 ```bash
-# View logs
+# Visualizza log
 docker logs orari-polisportiva-backend
 
 # Rebuild
 docker-compose up --build -d backend
 ```
 
-### Frontend Issues
+### Problemi Frontend
 
 ```bash
-# Clear node_modules and reinstall
+# Pulisci node_modules e reinstalla
 cd frontend
 rm -rf node_modules
 npm install
 npm run dev
 ```
 
-## 📄 License
+## 📄 Licenza
 
-MIT License - See LICENSE file for details
+Licenza MIT - vedi file LICENSE per i dettagli
 
-## 👨‍💻 Author
+## 👨‍💻 Autore
 
 Umile De Marco - [GitHub](https://github.com/dmnet2000)
 
-## 🤝 Contributing
+## 🤝 Contribuire
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. Fai un fork del repository  
+2. Crea il tuo branch feature (`git checkout -b feature/AmazingFeature`)  
+3. Esegui commit delle modifiche (`git commit -m 'Add some AmazingFeature'`)  
+4. Esegui push sul branch (`git push origin feature/AmazingFeature`)  
+5. Apri una Pull Request
 
-## 📞 Support
+## 📞 Supporto
 
-For support, email: dmnet2000@gmail.com
+Per supporto, email: dmnet2000@gmail.com

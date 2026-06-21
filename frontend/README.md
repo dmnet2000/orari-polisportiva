@@ -1,27 +1,27 @@
 # Frontend - Orari Polisportiva
 
-Vue.js 3 frontend application for managing sports facility schedules.
+Applicazione frontend Vue.js 3 per la gestione degli orari degli impianti sportivi.
 
-## Prerequisites
+## Prerequisiti
 
 - Node.js 18+
-- npm or yarn
+- npm oppure yarn
 
 ## Setup
 
-### Install Dependencies
+### Installazione dipendenze
 
 ```bash
 npm install
 ```
 
-### Development
+### Sviluppo
 
 ```bash
 npm run dev
 ```
 
-The application will be available at `http://localhost:3000`
+L'applicazione sarà disponibile su `http://localhost:3000`
 
 ### Build
 
@@ -35,29 +35,29 @@ npm run build
 npm run preview
 ```
 
-## Environment Variables
+## Variabili d'ambiente
 
-Create a `.env` file in the frontend directory:
+Crea un file `.env` nella cartella frontend:
 
 ```env
 VITE_API_URL=http://localhost:8080/api
 ```
 
-## Features
+## Funzionalità
 
-- User authentication (login/register)
-- View sports facilities (palestre)
-- Browse sports disciplines
-- View available training schedules
-- Make and manage bookings
-- Responsive design
+- Autenticazione utente (login/registrazione)
+- Visualizzazione palestre
+- Navigazione discipline sportive
+- Visualizzazione orari di allenamento disponibili
+- Creazione e gestione prenotazioni
+- Design responsive
 
-## Project Structure
+## Struttura del progetto
 
-- `src/main.js` - Application entry point
-- `src/App.vue` - Root component
-- `src/router/` - Router configuration
-- `src/stores/` - Pinia state management
-- `src/services/` - API service modules
-- `src/views/` - Page components
-- `src/components/` - Reusable components
+- `src/main.js` - Punto di ingresso dell'applicazione
+- `src/App.vue` - Componente root
+- `src/router/` - Configurazione router
+- `src/stores/` - State management con Pinia
+- `src/services/` - Moduli servizio API
+- `src/views/` - Componenti pagina
+- `src/components/` - Componenti riutilizzabili
